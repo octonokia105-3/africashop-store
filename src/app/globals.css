@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Soft Pearl & Feminine Beauty Palette for AfricaShop Cosmetics */
+  --color-void: #fff7f9;
+  --color-surface: #ffffff;
+  --color-surface-2: #fff0f4;
+  --color-border: rgba(225, 100, 145, 0.15);
+  
+  /* Typography Colors (High contrast dark plum on light rose background) */
+  --color-light: #2c161e;
+  --color-muted: #855b6a;
+  
+  /* Rose Gold & Soft Pink Accents */
+  --color-gold: #e85d88;
+  --color-gold-hover: #d4426f;
+  --color-urgent: #e03158;
+  --color-success: #2bb673;
+  
+  /* Fonts */
+  --font-cairo: var(--font-cairo), sans-serif;
+  
+  /* Shadows */
+  --shadow-gold: 0 0 35px rgba(232,93,136,0.25), 0 8px 30px rgba(225,100,145,0.15);
+  --shadow-gold-lg: 0 0 70px rgba(232,93,136,0.2), 0 20px 50px rgba(225,100,145,0.2);
+}
+
+/* Animations */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes float-anim {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(33.33333%); }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float-anim 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-anim 4s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(255, 240, 244, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+}
+
+.glass-nav {
+  background: rgba(255, 247, 249, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Base resets for RTL */
+body {
+  direction: rtl;
+}
+
+/* Utility to hide scrollbar for horizontal scrolling elements */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #e85d88;
+}
+
+/* Rose Shine Animations */
+@keyframes goldShine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.text-gold-shine {
+  background: linear-gradient(to right, #e85d88 20%, #c43864 40%, #e85d88 60%, #9e2548 80%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShine 3s linear infinite;
+}
+
+.border-gold-glow {
+  position: relative;
+}
+
+.border-gold-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(45deg, #e85d88, #ffc0d3, #e85d88, #ffffff);
+  background-size: 200% auto;
+  z-index: -1;
+  animation: goldShine 4s linear infinite;
+  opacity: 0.7;
+  filter: blur(4px);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
