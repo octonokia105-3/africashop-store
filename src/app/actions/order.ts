@@ -4,6 +4,7 @@ import { createAdminClient } from '@/lib/supabase/server'
 import { headers } from 'next/headers'
 import { syncOrderToGoogleSheets } from '@/lib/integrations/google-sheets'
 import { sendOrderEmailAlert } from '@/lib/integrations/email-notifications'
+import { sendWhatsAppAlert } from '@/lib/integrations/whatsapp-notifications'
 import fs from 'fs'
 import path from 'path'
 import crypto from 'crypto'
@@ -67,6 +68,16 @@ export async function submitOrder(prevState: any, formData: FormData) {
       }).catch(console.error)
 
       sendOrderEmailAlert({
+        order_id: fakeOrder.display_id,
+        customer_name: fakeOrder.customers.full_name,
+        phone: fakeOrder.customers.phone,
+        city: fakeOrder.customers.city,
+        address: fakeOrder.customers.address,
+        package: fakeOrder.package_selected,
+        total: fakeOrder.total_amount
+      }).catch(console.error)
+
+      sendWhatsAppAlert({
         order_id: fakeOrder.display_id,
         customer_name: fakeOrder.customers.full_name,
         phone: fakeOrder.customers.phone,
@@ -198,6 +209,26 @@ export async function submitOrder(prevState: any, formData: FormData) {
       package: packageSelected,
       total: totalAmount,
       status: 'New'
+    }).catch(console.error)
+
+    sendOrderEmailAlert({
+      order_id: order.display_id,
+      customer_name: fullName,
+      phone: phone,
+      city: city,
+      address: address,
+      package: packageSelected,
+      total: totalAmount
+    }).catch(console.error)
+
+    sendWhatsAppAlert({
+      order_id: order.display_id,
+      customer_name: fullName,
+      phone: phone,
+      city: city,
+      address: address,
+      package: packageSelected,
+      total: totalAmount
     }).catch(console.error)
 
     // 6. Meta Conversions API (CAPI) Server-Side Tracking
