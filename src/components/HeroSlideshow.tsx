@@ -55,7 +55,7 @@ export default function HeroSlideshow({ product }: { product?: Product }) {
   const prevSlide = () => setCurrent(current === 0 ? slides.length - 1 : current - 1);
 
   return (
-    <section className="relative w-full h-[80vh] md:h-[90vh] overflow-hidden bg-void border-b border-gold/30">
+    <section className="relative w-full h-[75vh] md:h-[85vh] overflow-hidden bg-[#fff7f9] border-b border-rose-100">
       <AnimatePresence initial={false}>
         <motion.div
           key={current}
@@ -63,59 +63,60 @@ export default function HeroSlideshow({ product }: { product?: Product }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
+          transition={{ duration: 1, ease: "easeInOut" }}
         >
-          {/* Background Image with Ken Burns effect */}
+          {/* Background Image with subtle zoom */}
           <motion.div
             className="absolute inset-0 w-full h-full"
             initial={{ scale: 1 }}
-            animate={{ scale: 1.08 }}
+            animate={{ scale: 1.05 }}
             transition={{ duration: 8, ease: "linear" }}
           >
             <Image 
               src={slides[current].image}
-              alt={slides[current].title || "Arwa Store Slide"}
+              alt={slides[current].title || "AfricaShop Slide"}
               fill
-              className="object-cover"
+              className="object-cover object-center"
               priority
             />
-            {/* Dark Gradient Overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-void via-void/50 to-transparent opacity-90" />
-            <div className="absolute inset-0 bg-gradient-to-r from-void/60 via-transparent to-transparent opacity-60" />
+            {/* Soft Light Overlay so products and face remain 100% visible */}
+            <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/20 to-transparent opacity-90" />
           </motion.div>
 
-          {/* Text Content */}
-          <div className="absolute inset-0 flex items-center justify-center text-center px-6">
-            <div className="max-w-4xl w-full flex flex-col items-center">
+          {/* Text Content Container */}
+          <div className="absolute inset-0 flex items-center justify-center text-center px-4">
+            <div className="max-w-3xl w-full flex flex-col items-center">
               <motion.h1 
-                initial={{ y: 50, opacity: 0 }}
+                initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-                className="text-4xl md:text-6xl lg:text-[5rem] font-black leading-tight text-light drop-shadow-2xl mb-6 text-gold-shine"
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-[#e85d88] drop-shadow-sm mb-4"
               >
                 {slides[current].title}
               </motion.h1>
               
-              <motion.p 
-                initial={{ y: 30, opacity: 0 }}
+              <motion.div 
+                initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-                className="text-lg md:text-2xl text-muted/90 font-medium max-w-2xl mb-10 drop-shadow-md bg-void/50 px-4 py-2 rounded-xl backdrop-blur-sm"
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white/85 backdrop-blur-md px-6 py-4 rounded-2xl border border-rose-200/60 shadow-sm max-w-2xl mb-8"
               >
-                {slides[current].subtitle}
-              </motion.p>
+                <p className="text-base sm:text-lg md:text-xl text-gray-700 font-bold leading-relaxed">
+                  {slides[current].subtitle}
+                </p>
+              </motion.div>
               
               <motion.button 
-                initial={{ y: 30, opacity: 0 }}
+                initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={() => document.getElementById('checkout-top')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-gold hover:bg-gold-hover text-void font-black py-4 px-10 md:px-16 rounded-full text-xl md:text-2xl shadow-[0_0_40px_rgba(232,184,58,0.5)] transition-all flex items-center gap-3 group border-gold-glow"
+                className="bg-[#e85d88] hover:bg-[#d4426f] text-white font-bold py-4 px-8 md:px-12 rounded-full text-lg md:text-xl shadow-[0_8px_25px_rgba(232,93,136,0.4)] transition-all flex items-center gap-3 group cursor-pointer"
               >
-                {slides[current].cta}
-                <ChevronLeft className="w-6 h-6 group-hover:-translate-x-2 transition-transform" />
+                <span>{slides[current].cta}</span>
+                <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
               </motion.button>
             </div>
           </div>

@@ -28,13 +28,13 @@ export default function StickyActionButtons() {
       {/* Floating WhatsApp Button (Desktop & Mobile) */}
       <div className="fixed bottom-4 right-4 z-[150] pointer-events-auto">
         <a 
-          href="https://wa.me/212600000000?text=مرحباً، أود الاستفسار عن باك نوكيا 105" 
+          href="https://wa.me/212600000000?text=مرحباً، أود الاستفسار عن باك الأركان الملكي المتكامل" 
           target="_blank" 
           rel="noopener noreferrer"
           className="bg-[#25D366] text-white rounded-full flex items-center justify-center gap-2 px-4 py-3 sm:px-5 shadow-[0_0_20px_rgba(37,211,102,0.6)] hover:scale-105 transition-all duration-300 animate-[pulse_3s_infinite]"
         >
           <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7" />
-          <span className="font-bold text-xs sm:text-sm tracking-wide hidden min-[360px]:inline">للطلب عبر الواتساب</span>
+          <span className="font-bold text-xs sm:text-sm tracking-wide hidden min-[360px]:inline">لطلب عبر الواتساب</span>
         </a>
       </div>
 
