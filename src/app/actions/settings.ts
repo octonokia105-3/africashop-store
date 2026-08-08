@@ -1,6 +1,7 @@
 'use server'
 
 import { createClient } from '@/lib/supabase/server'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import fs from 'fs'
 import path from 'path'
 
@@ -21,7 +22,7 @@ export async function getStoreSettings() {
   }
 
   try {
-    const supabase = await createClient()
+    const supabase = createSupabaseClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
     const { data, error } = await supabase
       .from('store_settings')
       .select('*')

@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import "./globals.css";
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} h-full antialiased scroll-smooth`}>
       <head>
-        <TrackingScripts />
+        <React.Suspense fallback={null}>
+          <TrackingScripts />
+        </React.Suspense>
       </head>
       <body className="min-h-full flex flex-col font-cairo bg-void text-light overflow-x-hidden">{children}</body>
     </html>
